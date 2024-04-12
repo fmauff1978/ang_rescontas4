@@ -1,0 +1,84 @@
+.mat-column-demo-position {
+  width: 32px;
+  border-right: 1px solid currentColor;
+  padding-right: 24px;
+  text-align: center;
+}
+
+.mat-column-demo-name {
+  padding-left: 16px;
+  font-size: 20px;
+}
+
+.mat-column-demo-weight {
+  font-style: italic;
+}
+
+.mat-column-demo-symbol {
+  width: 32px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.saldo{
+  text-align: center;
+  color: white;
+  font-size: medium;
+  background-color: blue;
+
+
+}
+
+.mat-form-field {
+  margin-right: 12px;
+}
+
+.tr.mat-mdc-footer-row {
+  font-weight: bold;
+}
+
+.table{
+  margin-left: auto;
+  margin-right: auto;
+  }
+
+
+  .example-container {
+    height: 400px;
+    overflow: auto;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .example-container mat-form-field + mat-form-field {
+    margin-left: 8px;
+    
+  }
+
+  .descricao {
+    padding: 15px;
+    font-size: 20px;
+    width: 500px; //bastou adicionar isso
+}
+
+
+
+.descricao_conta{
+  padding: 15px;
+  font-size: 12px;
+  width: 280px; //bastou adicionar isso
+}
+
+
+.botao{
+
+  padding:15px;
+  margin-left: 20px;
+}
+

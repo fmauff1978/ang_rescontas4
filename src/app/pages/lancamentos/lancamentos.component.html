@@ -1,0 +1,83 @@
+<mat-card>
+  <mat-toolbar class = "saldo">Lançamentos
+    <span class="example-spacer"></span>
+    <mat-icon >
+    <span class="material-icons example-icon" routerLink="criar-lcto">
+      add
+      </span></mat-icon>
+
+  </mat-toolbar>
+</mat-card>
+
+
+<mat-card>
+  <section class="example-container mat-elevation-z8" tabindex="0">
+<table mat-table [dataSource]="lctos" >
+
+  <ng-container matColumnDef="demo-position">
+    <th mat-header-cell *matHeaderCellDef> # </th>
+    <td mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+
+  <ng-container matColumnDef="data">
+    <th mat-header-cell *matHeaderCellDef> Data </th>
+    <td mat-cell *matCellDef="let element"> {{element.datadolancamento.toDate()| date:'dd/MM/yyyy'}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="cod">
+    <th mat-header-cell *matHeaderCellDef> Código </th>
+    <td mat-cell *matCellDef="let element"> {{element.cod}} </td>
+    </ng-container>
+
+
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="lancamento">
+    <th mat-header-cell *matHeaderCellDef> Descricao </th>
+    <td mat-cell *matCellDef="let element"> {{element.descricao}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="ctadebitada">
+    <th mat-header-cell *matHeaderCellDef> Conta Debitada </th>
+    <td mat-cell *matCellDef="let element"> {{element.conta_debitada.contadeb}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="ctacreditada">
+    <th mat-header-cell *matHeaderCellDef> Conta Creditada </th>
+    <td mat-cell *matCellDef="let element"> {{element.conta_creditada.contacred}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="valor">
+    <th mat-header-cell *matHeaderCellDef> Valor </th>
+    <td mat-cell *matCellDef="let element"> {{element.valor|currency}} </td>
+  </ng-container>
+
+
+
+  <ng-container matColumnDef="posicao">
+    <th mat-header-cell *matHeaderCellDef> Gravado em </th>
+    <td mat-cell *matCellDef="let element"> {{element.log.toDate()|date: "dd/MM/yyyy, HH:mm"}} </td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+</table>
+</section>
+
+</mat-card>
+
+
+
+
+
+
+

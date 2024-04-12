@@ -1,0 +1,65 @@
+<mat-card>
+  <mat-toolbar class = "saldo"> Criar Lançamento
+    <span class="example-spacer"></span>
+      </mat-toolbar>
+</mat-card>
+
+
+<mat-card>
+
+  <mat-card-content>
+
+    <form [formGroup]="meuForm" (ngSubmit)="OnSubmit()">
+  
+    <div class="example-container">
+
+      <mat-form-field>
+        <mat-label>Data do Lançamento</mat-label>
+        <input  matInput [matDatepicker]="picker" formControlName="datalcto"/>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker startView="month" [startAt]="startDate"></mat-datepicker>
+      </mat-form-field>
+
+
+      <mat-form-field class = "descricao">
+        <mat-label>Descrição</mat-label>
+        <input type= "text" matInput formControlName="descricao"/>
+      </mat-form-field>
+
+      <mat-form-field class = "descricao_conta">
+        <mat-label>Conta Debitada</mat-label>
+        <mat-select formControlName="ctadebitada">
+          <mat-option *ngFor="let cat of contas"
+           value="{{cat.id}}-{{cat.cod}}-{{cat.conta}}-{{cat.natureza}}-{{cat.enquadramento}}-{{cat.mod_despesa}}">{{cat.conta}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class = "descricao_conta">
+        <mat-label>Conta Creditada</mat-label>
+        <mat-select formControlName="ctacreditada">
+          <mat-option *ngFor="let cat of contas"
+           value="{{cat.id}}-{{cat.cod}}-{{cat.conta}}-{{cat.natureza}}-{{cat.enquadramento}}-{{cat.mod_despesa}}">{{cat.conta}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Valor</mat-label>
+    <input type="number" matInput formControlName="valor"/>
+  </mat-form-field>
+
+     
+
+          <button mat-stroked-button color="accent" class="botao">GRAVAR</button>
+
+          <button mat-stroked-button color="warn" class="botao" (click)="ResetForm()">LIMPAR</button>
+
+
+    </div>
+    </form>
+
+
+    </mat-card-content>
+      
+
+    </mat-card>
+

@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "ang_rescontas4",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+.example-card {
+
+  color: white;
+  text-align: center;
+
+}
+
+.table {
+  width: 100%;
+}
+
+.th.mat-sort-header-sorted {
+  color: black;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 600px;
+}
+
+.action-column {
+  flex: 0 0 125px;
+}
+
+.action-column-header {
+  margin: 0 auto;
+}

@@ -1,0 +1,28 @@
+
+
+  <mat-toolbar>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span routerLink="">Resultado das Contas</span>
+    <span class="example-spacer"></span>
+
+    <button mat-button [matMenuTriggerFor]="belowMenu">Contas</button>
+      <mat-menu #belowMenu="matMenu" yPosition="below">
+        <button routerLink="ativo" mat-menu-item>Ativo</button>
+        <button routerLink="passivo" mat-menu-item>Passivo</button>
+        <button routerLink="despesa"mat-menu-item>Despesa</button>
+        <button routerLink="receita"mat-menu-item>Receita</button>
+        <button routerLink="resultado" mat-menu-item>Resultado</button>
+        <button mat-menu-item>Todas</button>
+      </mat-menu>
+
+      <button routerLink="lctos"mat-button>Lançamentos</button>
+      <button mat-button>Agregados</button>
+      <button mat-button>Parcelamentos</button>
+      <button mat-button>CDC</button>
+      <button mat-button>Sobre</button>
+
+  </mat-toolbar>
+
+

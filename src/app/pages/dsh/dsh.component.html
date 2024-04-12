@@ -1,0 +1,96 @@
+
+
+
+<!-- Agregados -->
+<mat-card>
+  <mat-toolbar>Agregados</mat-toolbar>
+  <table mat-table [dataSource]="val" class="mat-elevation-z8 demo-table">
+    <!-- Position Column -->
+    <ng-container matColumnDef="demo-position">
+      <th mat-header-cell *matHeaderCellDef> # </th>
+      <td mat-cell *matCellDef="let element"> {{element.index}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="cod">
+      <th mat-header-cell *matHeaderCellDef> Codigo </th>
+      <td mat-cell *matCellDef="let element"> {{element.cod}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="saldoatual">
+      <th mat-header-cell *matHeaderCellDef> Saldo Atual </th>
+      <td mat-cell *matCellDef="let element"> {{element.saldo_atual|currency}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="posicao">
+      <th mat-header-cell *matHeaderCellDef> Posição </th>
+      <td mat-cell *matCellDef="let element"> {{element.log.toDate()|date: 'dd/MM/yyyy, HH:mm'}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</mat-card>
+<mat-card> <mat-card-content class = "example-card">A soma dos agregados é {{sum|currency}} </mat-card-content></mat-card>
+
+
+<!-- KPI despesas -->
+
+<mat-card>
+  <mat-toolbar>Despesas Evolução</mat-toolbar>
+  <table mat-table [dataSource]="despesas" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8 demo-table">
+    <!-- Position Column -->
+    <ng-container matColumnDef="demo-position">
+      <th mat-header-cell *matHeaderCellDef> # </th>
+      <td mat-cell *matCellDef="let element"> {{element.index}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="cod">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Codigo </th>
+      <td mat-cell *matCellDef="let element"> {{element.cod}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by nome"> Nome </th>
+      <td mat-cell *matCellDef="let element"> {{element.conta}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tipo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by tipo"> Tipo </th>
+      <td mat-cell *matCellDef="let element"> {{element.mod_despesa}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="objetivo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by objetivo"> Objetivo </th>
+      <td mat-cell *matCellDef="let element"> {{this.diasdec*element.gd|currency}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="realizado">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by realizado"> Realizado </th>
+      <td mat-cell *matCellDef="let element"> {{element.saldo|currency}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="atg">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by atg"> Atingimento </th>
+      <td mat-cell *matCellDef="let element"> {{element.saldo/(this.diasdec*element.gd)|percent: '2.2-2'}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedCol"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedCol;"></tr>
+  </table>
+</mat-card>
+

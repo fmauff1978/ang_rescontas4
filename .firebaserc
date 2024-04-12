@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "contas-27a8b": {
+      "hosting": {
+        "ang_rescontas4": [
+          "contas-27a8b"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "contas-27a8b"
+  }
+}

@@ -1,0 +1,38 @@
+<table mat-table [dataSource]="despesas" matSort (matSortChange)="announceSortChange($event)"
+       class="mat-elevation-z8">
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="cod">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by cod">
+      Codigo
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.cod}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="conta">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by conta">
+      Conta
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.conta}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="enq">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by enq">
+      Enquadramento
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.enquadramento}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="objetivo">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by objetivo">
+      Objetivo
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.gd*diasdec}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
