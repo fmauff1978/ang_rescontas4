@@ -36,7 +36,7 @@ constructor(private fs: AngularFirestore, private ls: LancamentoService, private
   }
 
   OnSubmit() {
-    console.log(this.meuForm)
+   
     let splitted_deb = this.meuForm.value.ctadebitada.split('-');
     let splitted_cred = this.meuForm.value.ctacreditada.split('-');
    
