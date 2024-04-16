@@ -6,8 +6,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AtualizacaoService } from 'src/app/services/atualizacao.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Observable, map } from 'rxjs';
-import { Conta } from 'src/app/models/conta';
+
 
 @Component({
   selector: 'app-criar-lancamentos',
@@ -19,7 +18,7 @@ export class CriarLancamentosComponent implements OnInit {
 startDate = new Date(2024, 0, 1);
 contas: any ={};
 meuForm!: FormGroup;
-contas$: Observable<Conta[]>;
+
 
 
 constructor(private fs: AngularFirestore, private ls: LancamentoService, private sb: MatSnackBar, private fb: FormBuilder){
@@ -32,14 +31,14 @@ constructor(private fs: AngularFirestore, private ls: LancamentoService, private
   ngOnInit()  {
 
     this.iniciarmeuForm();
-   
+
   }
 
   OnSubmit() {
-   
+
     let splitted_deb = this.meuForm.value.ctadebitada.split('-');
     let splitted_cred = this.meuForm.value.ctacreditada.split('-');
-   
+
 
     const cont_debid = splitted_deb[0];
     const cont_cred = splitted_cred[0];

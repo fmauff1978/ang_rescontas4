@@ -4,7 +4,7 @@ import { Timestamp } from "@angular/fire/firestore";
 
   export interface Conta {
 
-    id: string;
+   id: string;
     cod: number;
     conta: string;
     natureza: string;

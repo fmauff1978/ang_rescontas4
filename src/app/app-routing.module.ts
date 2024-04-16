@@ -1,3 +1,6 @@
+import { CriarParcelamentoComponent } from './pages/parcelamentos/criar-parcelamento/criar-parcelamento.component';
+import { ParcelamentosComponent } from './pages/parcelamentos/parcelamentos.component';
+import { CriarMultiplosComponent } from './pages/lancamentos/criar-lancamentos/criar-multiplos/criar-multiplos.component';
 import { ResultadoComponent } from './pages/contas/resultado/resultado.component';
 import { SobreComponent } from './pages/sobre/sobre.component';
 import { DespesaComponent } from './pages/contas/despesa/despesa.component';
@@ -10,6 +13,7 @@ import { PassivoComponent } from './pages/contas/passivo/passivo.component';
 import { ReceitaComponent } from './pages/contas/receita/receita.component';
 import { LancamentosComponent } from './pages/lancamentos/lancamentos.component';
 import { CriarLancamentosComponent } from './pages/lancamentos/criar-lancamentos/criar-lancamentos.component';
+import { AgregadosComponent } from './pages/agregados/agregados.component';
 
 const routes: Routes = [
 
@@ -22,7 +26,11 @@ const routes: Routes = [
 {path: 'receita', component: ReceitaComponent},
 {path: 'resultado', component: ResultadoComponent},
 {path: 'lctos', component: LancamentosComponent},
-{path: 'lctos/criar-lcto', component: CriarLancamentosComponent}
+{path: 'lctos/criar-lcto', component: CriarLancamentosComponent},
+{path: 'mult', component: CriarMultiplosComponent},
+{path: 'subagregados', component: AgregadosComponent},
+{path: 'parcelamentos', component: ParcelamentosComponent},
+{path: 'parcelamentos/criar-parcelamento', component: CriarParcelamentoComponent}
 
 
 

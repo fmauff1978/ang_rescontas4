@@ -8,6 +8,10 @@ import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 import {AfterViewInit,  ViewChild} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 
+import {NgFor} from '@angular/common';
+import { Conta } from 'src/app/models/conta';
+
+
 
 
 @Component({
@@ -15,22 +19,25 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './dsh.component.html',
   styleUrls: ['./dsh.component.scss']
 })
-export class DshComponent implements OnInit{
+export class DshComponent implements OnInit, AfterViewInit{
 
 
   val: any = {};
-  despesas: any = {};
+  despesas: any = {} ;
   sum: number;
   diasdec: number;
   displayedColumns = ['cod','nome','saldoatual', 'posicao']
   displayedCol = ['cod', 'nome', 'tipo', 'objetivo', 'realizado', 'atg']
+  sortedData: [] = [];
+  ds = new MatTableDataSource<Conta>();
+
 
 
 
   constructor(private fs: AngularFirestore, private _liveAnnouncer: LiveAnnouncer){}
 
 
-  ngOnInit(): void {
+  ngOnInit() {
 
 
     this.fs.collection('agregados', (ref) => ref.orderBy('cod', 'asc')).valueChanges().subscribe(value => {
@@ -44,7 +51,15 @@ export class DshComponent implements OnInit{
 
     this.fs.collection('contas', (ref)=> ref.where('ativa', '==', true).where('gd', '!=', 0).orderBy('saldo', 'desc')).valueChanges({idField: 'id'}).subscribe(value =>  {
       this.despesas = value;
-      console.log(this.despesas)})
+      console.log(this.despesas)
+
+      this.sortedData = this.despesas.slice();
+
+      console.log(this.sortedData)
+
+
+
+    })
 
 
       let start=moment(Date.now());
@@ -54,7 +69,20 @@ export class DshComponent implements OnInit{
       let dias_decorridos = 366-dias_faltantes;
       this.diasdec = dias_decorridos;
 
+
+console.log(this.ds)
+
   }
+
+  @ViewChild(MatSort) sort: MatSort;
+
+  ngAfterViewInit() {
+    this.ds = new MatTableDataSource<Conta>(this.despesas);
+    this.ds.sort = this.sort;
+  }
+
+
+
 
    announceSortChange(sortState: Sort) {
     // This example uses English messages. If your application supports
@@ -68,4 +96,8 @@ export class DshComponent implements OnInit{
     }
   }
 
+
+
+
 }
+

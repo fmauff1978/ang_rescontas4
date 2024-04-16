@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Timestamp } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { Conta } from '../models/conta';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AtualizacaoService {
+
+
+  agregados: Observable<Conta[]>;
+ fonte: any ={}
 
   constructor(private fs: AngularFirestore) { }
 
@@ -28,18 +34,73 @@ export class AtualizacaoService {
     debito.update({saldo_atual:(valor)});
     debito.update({log: Timestamp.now()});
 
+    let debito1 = this.fs.collection('sub_agregados').doc('bE6JzbSXhEI63Nkhn43P');
+    debito1.update({saldo_atual:(valor)});
+    debito1.update({log: Timestamp.now()});
+
+
   }
 
   atualizarreceita (valor){
     let debito = this.fs.collection('agregados').doc('Ugi07FMMNu2c7xyAlJDz');
     debito.update({saldo_atual:(valor)});
-    debito.update({log: Timestamp.now()});}
+    debito.update({log: Timestamp.now()});
+
+
+    let debito1 = this.fs.collection('sub_agregados').doc('QL2ucPyihtUZaxfSd9gX');
+    debito1.update({saldo_atual:(valor*(-1))});
+    debito1.update({log: Timestamp.now()});
+
+  }
 
 
 atualizaresultado (valor){
     let debito = this.fs.collection('agregados').doc('XRmnPtKzi8VJQA6SmWLD');
     debito.update({saldo_atual:(valor)});
-    debito.update({log: Timestamp.now()});}
+    debito.update({log: Timestamp.now()});
+
+  }
+
+
+  pegarcontas (){
+
+    this.agregados = this.fs.collection<Conta>('agregados').valueChanges({idField: 'id'})
+    return this.agregados
+  }
+
+  atualizarbucket(id: string, valor: number) {
+
+    let debito = this.fs.collection('sub_agregados').doc(id);
+    debito.update({saldo_atual:(valor)});
+    debito.update({log: Timestamp.now()});
+
+
+
+
+  }
+
+
+atualizarparcelamentos(id, qtde, saldorestante){
+
+  let debito15 =  this.fs.collection('parcelamentos').doc(id);
+  debito15.update({parcelasrestantes: (qtde)})
+  debito15.update({saldorestante: (saldorestante)})
+  debito15.update({log: Timestamp.now()})
+
+   let debito10 = this.fs.collection('update').doc('cjMX9mVVDtulRmNpbMzZ');
+  debito10.update({posicao: Timestamp.now()})
+}
+
+pegarparcelamentos (){
+
+  return this.fs.collection('parcelamentos', (ref)=> ref.where('ativa','==',true)).valueChanges({idField: 'id'})
+
+}
+
+
 
 
 }
+
+
+

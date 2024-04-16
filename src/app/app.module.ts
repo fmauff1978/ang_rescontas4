@@ -54,6 +54,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import {MatNativeDateModule} from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CriarMultiplosComponent } from './pages/lancamentos/criar-lancamentos/criar-multiplos/criar-multiplos.component';
+import { AgregadosComponent } from './pages/agregados/agregados.component';
+import { CriarParcelamentoComponent } from './pages/parcelamentos/criar-parcelamento/criar-parcelamento.component';
 
 
 
@@ -78,7 +81,10 @@ registerLocaleData(ptBr);
     DespesaComponent,
     ReceitaComponent,
     ResultadoComponent,
-    CriarLancamentosComponent
+    CriarLancamentosComponent,
+    CriarMultiplosComponent,
+    AgregadosComponent,
+    CriarParcelamentoComponent
 
 
   ],
