@@ -57,7 +57,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CriarMultiplosComponent } from './pages/lancamentos/criar-lancamentos/criar-multiplos/criar-multiplos.component';
 import { AgregadosComponent } from './pages/agregados/agregados.component';
 import { CriarParcelamentoComponent } from './pages/parcelamentos/criar-parcelamento/criar-parcelamento.component';
-
+import { ParcelamentoTesteComponent } from './pages/parcelamentos/parcelamento-teste/parcelamento-teste.component';
 
 
 
@@ -84,7 +84,8 @@ registerLocaleData(ptBr);
     CriarLancamentosComponent,
     CriarMultiplosComponent,
     AgregadosComponent,
-    CriarParcelamentoComponent
+    CriarParcelamentoComponent,
+    ParcelamentoTesteComponent
 
 
   ],
@@ -114,7 +115,7 @@ registerLocaleData(ptBr);
        MatIconModule,
        MatDatepickerModule,
        MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,ReactiveFormsModule, FormsModule,
-       
+
   ],
   providers: [{provide: LOCALE_ID,useValue:'pt'},{ provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' }],
   bootstrap: [AppComponent]

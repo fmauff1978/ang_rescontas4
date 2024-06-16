@@ -14,7 +14,7 @@
     <div class="example-container">
 
 
-     
+
       <mat-form-field>
         <mat-label>Data do Lançamento</mat-label>
         <input  matInput [matDatepicker]="picker" formControlName="datalcto"/>
@@ -31,7 +31,7 @@
       <mat-form-field class = "descricao_conta">
         <mat-label>Conta Debitada</mat-label>
         <mat-select formControlName="ctadebitada">
-          <mat-option *ngFor="let cat of contas|keyvalue"
+          <mat-option *ngFor="let cat of contas"
            value="{{cat.id}}-{{cat.cod}}-{{cat.conta}}-{{cat.natureza}}-{{cat.enquadramento}}-{{cat.mod_despesa}}">{{cat.conta}}</mat-option>
          </mat-select>
       </mat-form-field>
@@ -43,7 +43,7 @@
       <mat-form-field class = "descricao_conta">
         <mat-label>Conta Creditada</mat-label>
         <mat-select formControlName="ctacreditada">
-          <mat-option *ngFor="let cat of contas|keyvalue"
+          <mat-option *ngFor="let cat of contas"
            value="{{cat.id}}-{{cat.cod}}-{{cat.conta}}-{{cat.natureza}}-{{cat.enquadramento}}-{{cat.mod_despesa}}">{{cat.conta}}</mat-option>
         </mat-select>
       </mat-form-field>

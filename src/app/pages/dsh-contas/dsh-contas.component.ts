@@ -8,6 +8,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Conta } from 'src/app/models/conta';
+import { Timestamp } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-dsh-contas',
@@ -17,75 +18,88 @@ import { Conta } from 'src/app/models/conta';
 
 export class DshContasComponent implements AfterViewInit {
 
-  @Input() despesas: any[] = [];
 
-  displayedColumns = ['cod', 'conta', 'enq', 'objetivo'];
-  dataSource = new MatTableDataSource<Conta>();
+
+
+  displayedColumns = ['cod', 'conta', 'mod_despesa','objetivo', 'saldo', 'atg', 'log'];
+  dataSource: MatTableDataSource<Conta>;
   diasdec: number;
-  ativos$: Observable<Conta[]> ;
-
-
-
-  constructor(private fs: AngularFirestore, private _liveAnnouncer: LiveAnnouncer){
-    this.fs.collection('contas', (ref)=> ref.where('ativa', '==', true).where('mod_despesa', '!=', 'off').orderBy('saldo', 'desc')).valueChanges({idField: 'id'}).subscribe(value =>  {
-    this.despesas = value
-    console.log(this.despesas)
-   
-
-
-  }
-  )
-
-   let start=moment(Date.now());
-   let end1 = new Date (2024, 11,31)
-   let duration = moment.duration(start.diff(end1)).asDays() * (-1);
-   let dias_faltantes = Math.trunc(duration) + 1;
-   let dias_decorridos = 366-dias_faltantes;
-   this.diasdec = dias_decorridos;
-
-   this.ativos$ =this.fs.collection('contas', (ref) => ref.where('natureza','==',"ativo").orderBy('enquadramento', 'asc').orderBy('cod','asc')).get().pipe(map((result)=> this.convertSnaps<Conta>(result)));
-
-
-
-  }
-
+  despesas$: Observable<Conta[]> ;
+  desp: any = {};
 
 
   @ViewChild(MatSort) sort: MatSort;
 
-ngAfterViewInit() {
+
+  constructor(private fs: AngularFirestore, private _liveAnnouncer: LiveAnnouncer){
+
+  this.fs.collection('contas', (ref)=> ref.where('gd', '!=', 0).orderBy('atg','desc')).valueChanges({idField: 'id'}).subscribe(value =>  {
+  this.desp = value;
+
+
+   this.dataSource = new MatTableDataSource(this.desp)
+
+
    this.dataSource.sort = this.sort;
 
+
+   let start=moment(Date.now());
+   let end1 = new Date (2024, 11,31)
+   let duration = moment.duration(start.diff(end1)).asDays() * (-1);
+   let dias_faltantes = Math.trunc(duration) + 1
+   let dias_decorridos = 366-dias_faltantes;
+   this.diasdec = dias_decorridos;
+   console.log(this.diasdec)
+
+
+
+
+  })
+
+
+   }
+
+ngAfterViewInit() {
+ // this.dataSource.sort = this.sort;
+
+ }
+
+
+
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 
+  getContas (){
 
-     announceSortChange(sortState: Sort) {
-    // This example uses English messages. If your application supports
-    // multiple language, you would internationalize these strings.
-    // Furthermore, you can customize the message to add additional
-    // details about the values being sorted.
-    if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-    } else {
-      this._liveAnnouncer.announce('Sorting cleared');
+    this.fs.collection('contas', (ref)=> ref.where('gd', '!=', 0)).valueChanges({idField: 'id'}).subscribe(value =>  {
+      this.desp = value})
+
+      return this.desp;
+
+  }
+
+
+  async atualizar () {
+
+    const data  = await this.getContas()
+    for (const x of data){
+      let id = x.id;
+      let gd = x.gd;
+      let dd = this.diasdec;
+      let sd = x.saldo;
+      let at = sd/(dd*gd)
+      const debito = await this.fs.collection('contas').doc(id);
+      await debito.update({atg:(at)});
+      await debito.update({log: Timestamp.now()})
+      console.log(id)
     }
+
+
   }
-
-  convertSnaps<T>(results){
-    return <T[]> results.docs.map(snap=>{
-      return{
-        id:snap.id,
-        ...<any> snap.data()
-   }
-    })
-   }
-
-   getContas(){
-
-  let debito = this.fs.collection('agregados').get();
-    console.log(debito)
-   }
 
 
 

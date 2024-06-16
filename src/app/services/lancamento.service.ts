@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Timestamp, increment } from '@angular/fire/firestore';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
@@ -7,6 +8,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class LancamentoService {
+
 
   res: any;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
@@ -20,7 +22,7 @@ export class LancamentoService {
 
     const res = await this.fs.collection('lancamentos').add(lcto).then(docRef =>{
 
-      this.openSnackBar("Lançamento criado com sucesso", "OK")})
+      console.log("Lançamento criado com sucesso", "OK")})
 
     this.router.navigate(['/lctos'])
 }
@@ -42,6 +44,21 @@ async saveParc(lcto){
 
   this.router.navigate(['/parcelamentos'])
 }
+
+
+async debitar (id, valor){
+
+let debito = this.fs.collection('contas').doc(id);
+debito.update({saldo: increment(valor)})
+debito.update({log: Timestamp.now()});
+}
+
+async creditar (id, valor){
+
+  let debito = this.fs.collection('contas').doc(id);
+  debito.update({saldo: increment((valor)*(-1))})
+  debito.update({log: Timestamp.now()});
+  }
 
 
 

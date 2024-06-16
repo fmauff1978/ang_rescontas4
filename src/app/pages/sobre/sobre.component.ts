@@ -24,6 +24,11 @@ export class SobreComponent {
       this.despesas = value;
       console.log(this.despesas)
 
+      let result = this.despesas.map(x=> [x.id, x.conta, x.cod, x.natureza, x.saldo, x.enquadramento, x.mod_despesa])
+      console.log(result)
+
+
+
 
       this.sum = this.despesas.reduce( function( a, b ) {
         return a + b.saldo;
@@ -41,7 +46,7 @@ export class SobreComponent {
 
        this.fs.collection('parcelamentos', (ref)=> ref.where('ativa', '==', true)).valueChanges({idField: 'id'}).subscribe(value =>  {
         this.despesas = value;
-        console.log(this.despesas)
+        //console.log(this.despesas)
 
 
         for (let i=0;i<this.despesas.length;i++){
@@ -72,7 +77,7 @@ export class SobreComponent {
 
       this.fs.collection('parcelamentos',(ref)=> ref.where('ativa','==',true).where('parcelasrestantes', '==', 1)).valueChanges({idField: 'id'}).subscribe(value =>  {
         this.despesas = value;
-        console.log(this.despesas)
+      //  console.log(this.despesas)
 
          for(let i=0;i<this.despesas.length;i++){
             let id = this.despesas[i].id;
@@ -80,26 +85,26 @@ export class SobreComponent {
             let one = this.despesas[i].ultimaparcela.toDate();
             let valor = this.despesas[i].valorparcela;
 
-            console.log(id, hoje,one,valor)
+           // console.log(id, hoje,one,valor)
 
             const now = moment(hoje); // Data de hoje
             const future = moment(one); // Outra data no passado
             const duration = moment.duration(future.diff(now));
              const months = duration.asMonths();
-             console.log(months)
+           //  console.log(months)
 
              if (months <0){
               let debito = this.fs.collection('parcelamentos').doc(id);
-              debito.update({ativa: false});
-              debito.update({parcelasrestantes: 0})
-              debito.update({log: Timestamp.now()})
+             // debito.update({ativa: false});
+             // debito.update({parcelasrestantes: 0})
+            //  debito.update({log: Timestamp.now()})
              }else{
 
             this.qtdeparcelasfaltantes = Math.trunc(months) + 1
-            console.log(this.qtdeparcelasfaltantes)
+          //  console.log(this.qtdeparcelasfaltantes)
              this.saldorestante = this.qtdeparcelasfaltantes * valor
-            this.as.atualizarparcelamentos(id, this.qtdeparcelasfaltantes, this.saldorestante)
-            console.log(id + "  atualizado com sucesso")
+           // this.as.atualizarparcelamentos(id, this.qtdeparcelasfaltantes, this.saldorestante)
+           // console.log(id + "  atualizado com sucesso")
 
             }
             //this.openSnackBar("Parcelamentos atualizados com sucesso!", "OK")

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Timestamp } from '@angular/fire/firestore';
+import { FieldValue, Timestamp } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Conta } from '../models/conta';
 
@@ -10,7 +10,7 @@ import { Conta } from '../models/conta';
 export class AtualizacaoService {
 
 
-  agregados: Observable<Conta[]>;
+ agregados: Observable<Conta[]>;
  fonte: any ={}
 
   constructor(private fs: AngularFirestore) { }
@@ -73,32 +73,28 @@ atualizaresultado (valor){
     let debito = this.fs.collection('sub_agregados').doc(id);
     debito.update({saldo_atual:(valor)});
     debito.update({log: Timestamp.now()});
-
-
-
-
   }
 
 
-atualizarparcelamentos(id, qtde, saldorestante){
 
-  let debito15 =  this.fs.collection('parcelamentos').doc(id);
-  debito15.update({parcelasrestantes: (qtde)})
-  debito15.update({saldorestante: (saldorestante)})
-  debito15.update({log: Timestamp.now()})
 
-   let debito10 = this.fs.collection('update').doc('cjMX9mVVDtulRmNpbMzZ');
-  debito10.update({posicao: Timestamp.now()})
+
+async atualizarparcelamentos(id, qtde, saldorestante){
+
+  let debito15 =  await this.fs.collection('parcelamentos').doc(id);
+   await debito15.update({parcelasrestantes: (qtde)} )
+  await debito15.update({saldorestante: (saldorestante)})
+ await debito15.update ({log: Timestamp.now()})
+
 }
+
+
 
 pegarparcelamentos (){
 
   return this.fs.collection('parcelamentos', (ref)=> ref.where('ativa','==',true)).valueChanges({idField: 'id'})
 
 }
-
-
-
 
 }
 

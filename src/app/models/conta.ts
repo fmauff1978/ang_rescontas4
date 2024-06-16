@@ -10,6 +10,7 @@ import { Timestamp } from "@angular/fire/firestore";
     natureza: string;
     enquadramento: string;
     mod_despesa: string;
+    gd: number;
     ativa: boolean;
     saldo: number;
     log: Timestamp;

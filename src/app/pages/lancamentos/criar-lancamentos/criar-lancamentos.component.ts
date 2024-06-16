@@ -3,7 +3,7 @@ import { Timestamp } from '@angular/fire/firestore';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { AtualizacaoService } from 'src/app/services/atualizacao.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -15,9 +15,16 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class CriarLancamentosComponent implements OnInit {
 
-startDate = new Date(2024, 0, 1);
+startDate = new Date();
 contas: any ={};
 meuForm!: FormGroup;
+  valorainc: number;
+  ctadebitada: string;
+  ctacreditada: string;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+ verticalPosition: MatSnackBarVerticalPosition = 'top';
+  
+  durationInSeconds = 2;
 
 
 
@@ -66,6 +73,15 @@ constructor(private fs: AngularFirestore, private ls: LancamentoService, private
       log: Timestamp.now()
     }
     this.ls.saveData(lctogravar);
+    this.valorainc = this.meuForm.value.valor;
+    this.ctadebitada = cont_debid;
+    this.ctacreditada = cont_cred;
+
+    this.ls.debitar(this.ctadebitada, this.valorainc);
+    this.ls.creditar(this.ctacreditada, this.valorainc);
+    this.openSnackBar("Lancamento criado com sucesso, e contas debitadas/creditadas!", "OK")
+
+
 
     }
 
@@ -83,6 +99,15 @@ iniciarmeuForm(){
 
 ResetForm() {
   this.meuForm.reset();
+}
+
+openSnackBar(message: string, action: string) {
+  this.sb.open(message, action,  {
+    horizontalPosition: this.horizontalPosition,
+    verticalPosition: this.verticalPosition,
+    duration: this.durationInSeconds*1000,
+
+  });
 }
 
 

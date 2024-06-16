@@ -1,0 +1,99 @@
+<mat-card>
+  <mat-toolbar class = "saldo" > Parcelamentos
+    <mat-icon >
+      <span class="material-icons example-icon refresh" (click)="atualizar()">
+        sync
+        </span></mat-icon>
+        <mat-icon >
+          <span class="material-icons example-icon refresh" routerLink="criar-parcelamento">
+            add
+            </span></mat-icon>
+  </mat-toolbar>
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Parcelamento" #input>
+  </mat-form-field>
+  </mat-card>
+ 
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+
+      <ng-container matColumnDef="dp">
+        <th mat-header-cell *matHeaderCellDef> # </th>
+        <td mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <ng-container matColumnDef="cod">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Cod </th>
+        <td mat-cell *matCellDef="let row"> {{row.cod}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="datadacompra">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Data da Compra </th>
+        <td mat-cell *matCellDef="let row"> {{row.datadacompra.toDate()|date: 'dd/MM/yyyy'}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <ng-container matColumnDef="descricao">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Descrição</th>
+        <td mat-cell *matCellDef="let row"> {{row.descricao}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <ng-container matColumnDef="cartaovinculado">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Cartão Vinculado </th>
+        <td mat-cell *matCellDef="let row"> {{row.cartaovinculado.nome}} </td>
+        <td mat-footer-cell *matFooterCellDef>Total</td>
+
+      </ng-container>
+
+      <ng-container matColumnDef="qtdedeparcelas">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Qtde Parcelas </th>
+        <td mat-cell *matCellDef="let row"> {{row.qtdedeparcelas}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <ng-container matColumnDef="valorparcela">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor Parcela </th>
+        <td mat-cell *matCellDef="let row"> {{row.valorparcela|currency}} </td>
+        <td mat-footer-cell *matFooterCellDef>{{this.totalparcelas|currency}}</td>
+
+      </ng-container>
+
+      <ng-container matColumnDef="parcelasrestantes">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Parcelas Restantes </th>
+        <td mat-cell *matCellDef="let row"> {{row.parcelasrestantes}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <ng-container matColumnDef="ultimaparcela">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Data Última Parcela </th>
+        <td mat-cell *matCellDef="let row"> {{row.ultimaparcela.toDate()|date: 'dd/MM/yyyy'}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <ng-container matColumnDef="saldorestante">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Saldo Restante </th>
+        <td mat-cell *matCellDef="let row"> {{row.saldorestante|currency}} </td>
+        <td mat-footer-cell *matFooterCellDef>{{this.totalsdorestante|currency}}</td>
+      </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">Nenhum dado encontrado"{{input.value}}"</td>
+    </tr>
+  </table>
+
+
+
+
+<mat-card> <mat-card-content class = "saldorodape">Posição {{this.pos.toDate()|date: 'dd/MM/yyyy, HH:mm'}}</mat-card-content></mat-card>
+
+
+

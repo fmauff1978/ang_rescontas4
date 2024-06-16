@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Timestamp } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { LancamentoService } from 'src/app/services/lancamento.service';
 
 @Component({
@@ -19,6 +19,9 @@ startDate = new Date();
 contas: any ={};
 meuForm!: FormGroup;
 picker1: any;
+horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+ verticalPosition: MatSnackBarVerticalPosition = 'top';
+ durationInSeconds = 2;
 
 constructor(private fs: AngularFirestore, private sb: MatSnackBar, private fb: FormBuilder, private ls: LancamentoService){
 
@@ -82,7 +85,7 @@ OnSubmit() {
     log: Timestamp.now()
   }
  this.ls.saveParc(parcelamentogravar);
-
+ this.openSnackBar("Parcelamento criado com sucesso!", "OK")
 
 }
 
@@ -97,6 +100,15 @@ addMonths(date, months) {
     newDate.setDate(0);
   }
   return newDate;
+}
+
+openSnackBar(message: string, action: string) {
+  this.sb.open(message, action,  {
+    horizontalPosition: this.horizontalPosition,
+    verticalPosition: this.verticalPosition,
+    duration: this.durationInSeconds*1000,
+
+  });
 }
 
 }

@@ -19,17 +19,14 @@ import { Conta } from 'src/app/models/conta';
   templateUrl: './dsh.component.html',
   styleUrls: ['./dsh.component.scss']
 })
-export class DshComponent implements OnInit, AfterViewInit{
+export class DshComponent implements OnInit{
 
 
   val: any = {};
   despesas: any = {} ;
   sum: number;
-  diasdec: number;
+
   displayedColumns = ['cod','nome','saldoatual', 'posicao']
-  displayedCol = ['cod', 'nome', 'tipo', 'objetivo', 'realizado', 'atg']
-  sortedData: [] = [];
-  ds = new MatTableDataSource<Conta>();
 
 
 
@@ -49,52 +46,10 @@ export class DshComponent implements OnInit, AfterViewInit{
     }, 0 );
     })
 
-    this.fs.collection('contas', (ref)=> ref.where('ativa', '==', true).where('gd', '!=', 0).orderBy('saldo', 'desc')).valueChanges({idField: 'id'}).subscribe(value =>  {
-      this.despesas = value;
-      console.log(this.despesas)
-
-      this.sortedData = this.despesas.slice();
-
-      console.log(this.sortedData)
-
-
-
-    })
-
-
-      let start=moment(Date.now());
-      let end1 = new Date (2024, 11,31)
-      let duration = moment.duration(start.diff(end1)).asDays() * (-1);
-      let dias_faltantes = Math.trunc(duration) + 1
-      let dias_decorridos = 366-dias_faltantes;
-      this.diasdec = dias_decorridos;
-
-
-console.log(this.ds)
 
   }
 
-  @ViewChild(MatSort) sort: MatSort;
 
-  ngAfterViewInit() {
-    this.ds = new MatTableDataSource<Conta>(this.despesas);
-    this.ds.sort = this.sort;
-  }
-
-
-
-
-   announceSortChange(sortState: Sort) {
-    // This example uses English messages. If your application supports
-    // multiple language, you would internationalize these strings.
-    // Furthermore, you can customize the message to add additional
-    // details about the values being sorted.
-    if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-    } else {
-      this._liveAnnouncer.announce('Sorting cleared');
-    }
-  }
 
 
 

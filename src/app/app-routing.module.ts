@@ -14,6 +14,7 @@ import { ReceitaComponent } from './pages/contas/receita/receita.component';
 import { LancamentosComponent } from './pages/lancamentos/lancamentos.component';
 import { CriarLancamentosComponent } from './pages/lancamentos/criar-lancamentos/criar-lancamentos.component';
 import { AgregadosComponent } from './pages/agregados/agregados.component';
+import { ParcelamentoTesteComponent } from './pages/parcelamentos/parcelamento-teste/parcelamento-teste.component';
 
 const routes: Routes = [
 
@@ -29,9 +30,8 @@ const routes: Routes = [
 {path: 'lctos/criar-lcto', component: CriarLancamentosComponent},
 {path: 'mult', component: CriarMultiplosComponent},
 {path: 'subagregados', component: AgregadosComponent},
-{path: 'parcelamentos', component: ParcelamentosComponent},
+{path: 'parcelamentos', component: ParcelamentoTesteComponent},
 {path: 'parcelamentos/criar-parcelamento', component: CriarParcelamentoComponent}
-
 
 
 ];

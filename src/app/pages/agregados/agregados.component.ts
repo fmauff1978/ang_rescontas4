@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
 import { AtualizacaoService } from 'src/app/services/atualizacao.service';
 
 @Component({
@@ -23,6 +24,7 @@ export class AgregadosComponent implements OnInit {
  verticalPosition: MatSnackBarVerticalPosition = 'top';
   buckets = [];
   superavit : number ;
+  dataSource: MatTableDataSource<any>;
 
 
  constructor(private fs: AngularFirestore, private as: AtualizacaoService, private sb: MatSnackBar){
@@ -30,6 +32,7 @@ export class AgregadosComponent implements OnInit {
   this.fs.collection('sub_agregados', (ref)=> ref.where('descricao', '==', 'bucket').orderBy('cod', 'desc')).valueChanges({idField: 'id'}).subscribe(value =>  {
     this.sub = value;
 
+    this.dataSource = new MatTableDataSource(this.sub)
   //this.as.atualizarativo(this.sum);
  // this.openSnackBar("Ativo atualizado com sucesso!", "OK");
 

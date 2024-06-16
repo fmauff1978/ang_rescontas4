@@ -13,7 +13,7 @@ export class LancamentosComponent {
 
 
   displayedColumns = ['demo-position','data','cod', 'lancamento', 'ctadebitada', 'ctacreditada', 'valor', 'posicao']
-  lctos: any = {};
+  lctos: any = {}
   sum: number;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
@@ -24,7 +24,10 @@ export class LancamentosComponent {
 
     this.fs.collection('lancamentos',(ref)=> ref.orderBy('datadolancamento', 'desc')).valueChanges({idField: 'id'}).subscribe(value =>  {
       this.lctos = value;
-     
+
+      console.log(typeof this.lctos)
+
+
           })
 }
 

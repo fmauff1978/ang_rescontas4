@@ -1,0 +1,79 @@
+.table {
+  width: 100%;
+}
+
+.th.mat-sort-header-sorted {
+  color: black;
+}
+
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+
+.mat-column-cod {
+  width: 32px;
+  border-right: 1px solid currentColor;
+  padding-right: 24px;
+  text-align: center;
+}
+
+.mat-column-atg {
+  width: 32px;
+  padding-right: 50px;
+  text-align: center;
+}
+
+.mat-header-cell, mat-cell {
+  justify-content: center;
+}
+
+.refresh {
+  margin-left: 5px;
+cursor:pointer; }
+
+.mat-column-dp {
+  width: 32px;
+  border-right: 1px solid currentColor;
+  padding-right: 24px;
+  text-align: center;
+}
+
+.saldo{
+  text-align: left;
+  color: white;
+  font-size: medium;
+  background-color: blue;
+
+
+}
+
+.saldorodape{
+  text-align: center;
+  color: white;
+  font-size: medium;
+  background-color: blue;
+
+
+}
+
+.refresh {
+  margin-left: 5px;
+cursor:pointer; }
+
+
+example-icon {
+  padding: 0 14px;
+  cursor: pointer;
+
+}
+.example-spacer {
+  flex: 1 1 auto;
+
+}
+
+
+
+
