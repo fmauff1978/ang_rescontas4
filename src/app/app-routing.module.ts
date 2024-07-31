@@ -1,3 +1,4 @@
+import { GravacaoComponent } from './pages/sobre/gravacao/gravacao.component';
 import { CriarParcelamentoComponent } from './pages/parcelamentos/criar-parcelamento/criar-parcelamento.component';
 import { ParcelamentosComponent } from './pages/parcelamentos/parcelamentos.component';
 import { CriarMultiplosComponent } from './pages/lancamentos/criar-lancamentos/criar-multiplos/criar-multiplos.component';
@@ -31,7 +32,8 @@ const routes: Routes = [
 {path: 'mult', component: CriarMultiplosComponent},
 {path: 'subagregados', component: AgregadosComponent},
 {path: 'parcelamentos', component: ParcelamentoTesteComponent},
-{path: 'parcelamentos/criar-parcelamento', component: CriarParcelamentoComponent}
+{path: 'parcelamentos/criar-parcelamento', component: CriarParcelamentoComponent},
+{path: 'gravacao', component: GravacaoComponent}
 
 
 ];

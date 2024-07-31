@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Timestamp } from '@angular/fire/firestore';
+import { deleteDoc, Timestamp } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as moment from 'moment';
 import { AtualizacaoService } from 'src/app/services/atualizacao.service';
@@ -17,6 +17,8 @@ export class SobreComponent {
   sum: number;
   qtdeparcelasfaltantes: number;
   saldorestante: number;
+  contas: import("@angular/fire/compat/firestore").AngularFirestoreCollection<unknown>;
+  base: import("@angular/fire/compat/firestore").AngularFirestoreCollection<unknown>;
 
  constructor(private fs: AngularFirestore, private as: AtualizacaoService, private sb: MatSnackBar){
 
@@ -117,4 +119,44 @@ export class SobreComponent {
 //}
 
 }
+
+
+async deletar(){
+
+
+  try{
+  this.contas = this.fs.collection('contas')
+  const query = this.contas.ref.where('conta', '==', 'CDI_RecargaPay')
+  console.log(query)
+  const batch = this.fs.firestore.batch()
+  const snap = await query.get()
+  snap.forEach(doc=> batch.delete(doc.ref))
+  await batch.commit
+  console.log ("documentos excluidos")
+}catch (error){
+  console.error("error deleting")
+}
+}
+
+
+async deletar2(){
+
+
+  this.fs.collection('contas', (ref)=> ref.where('cod', '>', 179)).valueChanges({idField: 'id'}).subscribe(value =>  {
+    this.despesas = value;
+    console.log(this.despesas)
+
+    for(let i=0;i<this.despesas.length;i++){
+      let id = this.despesas[i].id;
+      this.base = this.fs.collection('contas')
+      this.base.doc(id).delete()}
+
+
+  })
+
+
+
+
+}
+
 }
