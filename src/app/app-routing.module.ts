@@ -1,3 +1,4 @@
+import { GerarsaldosComponent } from './pages/sobre/gerarsaldos/gerarsaldos.component';
 import { GravacaoComponent } from './pages/sobre/gravacao/gravacao.component';
 import { CriarParcelamentoComponent } from './pages/parcelamentos/criar-parcelamento/criar-parcelamento.component';
 import { ParcelamentosComponent } from './pages/parcelamentos/parcelamentos.component';
@@ -33,7 +34,8 @@ const routes: Routes = [
 {path: 'subagregados', component: AgregadosComponent},
 {path: 'parcelamentos', component: ParcelamentoTesteComponent},
 {path: 'parcelamentos/criar-parcelamento', component: CriarParcelamentoComponent},
-{path: 'gravacao', component: GravacaoComponent}
+{path: 'gravacao', component: GravacaoComponent},
+{path: 'saldos', component: GerarsaldosComponent}
 
 
 ];
