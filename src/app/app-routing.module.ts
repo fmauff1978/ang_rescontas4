@@ -1,3 +1,4 @@
+import { TemplateComponent } from './pages/sobre/template/template.component';
 import { GerarsaldosComponent } from './pages/sobre/gerarsaldos/gerarsaldos.component';
 import { GravacaoComponent } from './pages/sobre/gravacao/gravacao.component';
 import { CriarParcelamentoComponent } from './pages/parcelamentos/criar-parcelamento/criar-parcelamento.component';
@@ -35,7 +36,9 @@ const routes: Routes = [
 {path: 'parcelamentos', component: ParcelamentoTesteComponent},
 {path: 'parcelamentos/criar-parcelamento', component: CriarParcelamentoComponent},
 {path: 'gravacao', component: GravacaoComponent},
-{path: 'saldos', component: GerarsaldosComponent}
+{path: 'saldos', component: GerarsaldosComponent},
+{path: 'template', component: TemplateComponent},
+
 
 
 ];

@@ -60,6 +60,7 @@ import { CriarParcelamentoComponent } from './pages/parcelamentos/criar-parcelam
 import { ParcelamentoTesteComponent } from './pages/parcelamentos/parcelamento-teste/parcelamento-teste.component';
 import { GravacaoComponent } from './pages/sobre/gravacao/gravacao.component';
 import { GerarsaldosComponent } from './pages/sobre/gerarsaldos/gerarsaldos.component';
+import { TemplateComponent } from './pages/sobre/template/template.component';
 
 
 
@@ -89,7 +90,8 @@ registerLocaleData(ptBr);
     CriarParcelamentoComponent,
     ParcelamentoTesteComponent,
     GravacaoComponent,
-    GerarsaldosComponent
+    GerarsaldosComponent,
+    TemplateComponent
 
 
   ],

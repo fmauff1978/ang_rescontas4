@@ -23,7 +23,7 @@ meuForm!: FormGroup;
   ctacreditada: string;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
  verticalPosition: MatSnackBarVerticalPosition = 'top';
-  
+
   durationInSeconds = 2;
 
 
@@ -32,6 +32,8 @@ constructor(private fs: AngularFirestore, private ls: LancamentoService, private
 
   this.fs.collection('contas', (ref)=> ref.where('ativa', '==', true).orderBy('conta', 'asc')).valueChanges({idField: 'id'}).subscribe(value =>  {
     this.contas = value;
+
+    console.log(this.contas)
 
        })
 }

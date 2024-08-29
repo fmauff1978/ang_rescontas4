@@ -1,0 +1,162 @@
+<header>
+  <mat-card>
+  <mat-toolbar class="mat-toolbar teste">
+    <span>Cadastrar Lançamento via template</span>
+  </mat-toolbar>
+</mat-card>
+</header>
+
+
+
+<mat-card>
+  <mat-toolbar class="mat-toolbar label">
+    <span>FOPAG</span>
+  </mat-toolbar>
+</mat-card>
+
+
+
+<mat-card>
+  <form class="example-form" [formGroup]="meuForm" (ngSubmit)="OnSubmit()">
+    <table class="example-full-width" cellspacing="0">
+
+
+      <mat-form-field class="descricaodata">
+        <mat-label>Data do Lançamento</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="datalcto">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker startView="month" [startAt]="startDate"></mat-datepicker>
+      </mat-form-field>
+
+      <td>
+        <mat-form-field class="descricao">
+          <mat-label>Descricao</mat-label>
+          <input type= "text" matInput placeholder="ex. FOPAG setembro 1978" formControlName="descricao"/>
+          </mat-form-field>
+      </td>
+
+      <td>
+        <mat-form-field floatLabel="always">
+          <mat-label>Valor a Creditar</mat-label>
+          <input matInput type="number" formControlName="valorcred" class="example-right-align" placeholder="R$ 0,00" />
+        </mat-form-field>
+      </td>
+    </table>
+
+    <table>
+      <tr>
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label class="full-width">Previ</mat-label>
+            <input matInput type="number" placeholder="valor" formControlName="previ" />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label class="full-width">Previ2b</mat-label>
+            <input matInput type="number" placeholder="valor" formControlName="previ2b" />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label class="full-width">Previ80%</mat-label>
+            <input matInput  type="number" placeholder="valor" formControlName="previ80" />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label class="full-width">Cassi</mat-label>
+            <input matInput type="number" placeholder="valor"  formControlName="cassi" />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label class="full-width">Cassi Fabio</mat-label>
+            <input matInput type="number" placeholder="valor"  formControlName="cassi_fabio" />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label class="full-width">Cassi Rosa</mat-label>
+            <input matInput  type="number" placeholder="valor"   formControlName="cassi_rosa" />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label class="full-width">Cassi Luiz Felipe</mat-label>
+            <input matInput type="number" placeholder="valor" formControlName="cassi_lfelipe" />
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label class="full-width">INSS</mat-label>
+            <input matInput  type="number" placeholder="valor"  formControlName="inss" />
+          </mat-form-field>
+        </td>
+
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label class="full-width">IR</mat-label>
+            <input matInput type="number" placeholder="valor"  formControlName="ir" />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label class="full-width">FGTS</mat-label>
+            <input matInput type="number" placeholder="valor" formControlName="fgts" />
+          </mat-form-field>
+        </td>
+
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label class="full-width">Cont.Sindicais</mat-label>
+            <input matInput type="number" placeholder="valor" formControlName="contsind" />
+          </mat-form-field>
+        </td>
+
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label class="full-width">ES Previ</mat-label>
+            <input matInput type="number" placeholder="valor" formControlName="esprevi" />
+          </mat-form-field>
+        </td>
+
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label class="full-width">Previ 13sal</mat-label>
+            <input matInput type="number" placeholder="valor" formControlName="previ13" />
+          </mat-form-field>
+        </td>
+
+        <td>
+          <mat-form-field class="full-width">
+            <mat-label class="full-width">Provisões</mat-label>
+            <input matInput type="number" placeholder="valor" formControlName="prov" />
+          </mat-form-field>
+        </td>
+
+        <div class="example-button-row">
+
+          <button mat-stroked-button color="accent" class="botao">GRAVAR</button>
+
+
+                  </div>
+
+
+
+      </tr>
+    </table>
+    </form>
+</mat-card>
+
+
+
+
+
+
+

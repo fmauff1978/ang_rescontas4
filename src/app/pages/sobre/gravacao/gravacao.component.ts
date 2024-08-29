@@ -22,7 +22,9 @@ export class GravacaoComponent {
 
    // this.adjust()
 
-    this.ajustarData();
+   this.gravarConta()
+
+   // this.ajustarData();
 
    // const valores = fonte2;
    // console.log(valores);
@@ -50,8 +52,8 @@ export class GravacaoComponent {
 
   gravardb(dadosgravar){
 
-    const res = this.fs.collection('lancamentos_2024').add(dadosgravar).then(docRef =>{
-      console.log("lcto gravado com id: ", docRef.id);})
+    const res = this.fs.collection('contas2025').add(dadosgravar).then(docRef =>{
+      console.log("conta gravada com id: ", docRef.id);})
   }
 
 
@@ -63,14 +65,35 @@ export class GravacaoComponent {
 
     for (let i = 0; i < valores.length; i++) {
 
-      const gravar = valores[i].data;
-      const gravar2 = Timestamp.fromDate(new Date(gravar))
-      const gravar3 = Object.assign({}, valores[i], {data:gravar2})
-      this.gravardb(gravar3)
+     // const gravar = valores[i].data;
+     // const gravar2 = Timestamp.fromDate(new Date(gravar))
+      //const gravar3 = Object.assign({}, valores[i], {data:gravar2})
+      //this.gravardb(gravar3)
 
       //cod: `${Date.now()}`
 
       }
+
+  }
+
+  gravarConta(){
+
+
+    const valores = fonte2;
+    console.log(valores);
+    console.log(valores.length)
+
+    for (let i = 0; i < valores.length; i++) {
+
+      const gravar = valores[i]
+      this.gravardb(gravar)
+
+
+
+
+      }
+
+
 
   }
 
